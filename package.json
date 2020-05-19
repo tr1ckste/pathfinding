@@ -1,0 +1,16 @@
+{
+  "name": "pathfinding",
+  "version": "1.0.0",
+  "description": "pathfinding algorithm",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./main"
+  },
+  "author": "nikitavasilinenko@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-metarhia": "^7.0.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}
