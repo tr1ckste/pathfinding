@@ -26,7 +26,7 @@ class Pointer {
 
   moveTo(city) {
     if (this.current.links.has(city.name)) {
-      this.cash.push(this.current);
+      this.cash.push(this.prev);
       this.prev = this.current;
       this.current = city;
     } else {
@@ -39,6 +39,7 @@ class Pointer {
     if (this.cash.length > 0) {
       this.current = this.prev;
       this.prev = this.cash.pop();
+      return this;
     } else {
       console.error('reached first city');
     }
@@ -64,10 +65,4 @@ class Graph {
     console.error('no matches found');
   }
 }
-
-const ukraine = new Graph();
-const kiev = new City('Kiev', ukraine);
-const lviv = new City('Lviv', ukraine);
-ukraine.add(kiev).add(lviv);
-kiev.link(lviv, 120);
 
