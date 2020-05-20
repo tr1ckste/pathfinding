@@ -11,12 +11,12 @@ const getData = file => {
     console.error(err);
   }
   return data;
-}
+};
 
 const parser = file => {
   const data = getData(file);
   return data.split('\n');
-}
+};
 
 
 
