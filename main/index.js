@@ -1,23 +1,38 @@
 'use strict';
 
-const fs = require('fs');
-const rule = 'city - city - distance';
+const PARCER = require('./parcer');
+const GRAPH = require('./graph');
 
-const getData = file => {
-  let data;
-  try {
-    data = fs.readFileSync(`./${file}`).toString();
-  } catch (err) {
-    console.error(err);
+class Cell {
+  constructor(parent, weight) {
+    this.parent = parent;
+    this.weight = weight;
   }
-  return data;
-};
+}
 
-const parser = file => {
-  const data = getData(file);
-  return data.split('\n');
-};
+const createGraph = file => {
+  const graph = new GRAPH.Graph();
+  const links = PARCER.getLinks(file);
+  for (const link of links) {
+    const { to, from, distance } = link;
+    graph.add(new GRAPH.City(from, graph))
+         .add(new GRAPH.City(to, graph));
+    graph.getCity(from).link(graph.getCity(to), distance);
+  }
+  return graph;
+}
 
+// const dijkstra = (from, to, graph) => {
+//   const pointer = new GRAPH.Pointer(graph, from);
+//   const cities = graph.cities;
+//   const table = new Map();
+//   for (const city of cities) table.set(city.name, new Cell())
+// } 
 
+// const getRoute = (from, to) => {
 
-console.log(parser('cities.txt'));
+// }
+
+const graph = createGraph('cities.txt');
+
+console.log(graph.cities.length);

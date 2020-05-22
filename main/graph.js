@@ -43,6 +43,7 @@ class Pointer {
     } else {
       console.error('reached first city');
     }
+    return this;
   }
 }
 
@@ -51,9 +52,11 @@ class Graph {
     this.cities = new Array();
   }
 
-  add(city) {
-    if (!this.cities.includes(city)) {
-      this.cities.push(city);
+  add(...args) {
+    for (const city of args) {
+      if (!this.hasCity(city.name)) {
+        this.cities.push(city);
+      }
     }
     return this;
   }
@@ -64,5 +67,17 @@ class Graph {
     }
     console.error('no matches found');
   }
+
+  hasCity(name) {
+    for (const city of this.cities) {
+      if (city.name === name) return true;
+    }
+    return false;
+  }
 }
 
+module.exports = {
+  City,
+  Pointer,
+  Graph
+}
