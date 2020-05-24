@@ -49,7 +49,7 @@ const dijkstra = (from, graph) => {
   for (const city of cities) table.set(city.name, new Cell('', Infinity));
   table.get(from).weight = 0;
   let current = from;
-  for (const qqq of table.keys()) {
+  while (true) {
     let city = graph.getCity(current);
     for (const key of city.links.keys()) {
       if (table.get(key).weight > city.links.get(key) + table.get(current).weight) {
@@ -59,6 +59,7 @@ const dijkstra = (from, graph) => {
     }
     passed.push(current);
     current = getNextCity(table, passed);
+    if (current === undefined) break;
   }
   return table;
 }
