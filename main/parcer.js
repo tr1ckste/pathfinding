@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const rule = 'city - city - distance';
+const rulePlace = 0;
 
 const getData = file => {
   let data;
@@ -18,15 +18,22 @@ const parser = file => {
   return data.split('\n');
 };
 
+const getRule = file => {
+  let rule =  parser(file)[rulePlace];
+  return rule.split('rule: ').pop().replace(/\'/g, '');
+}
+
 const getLinks = file => {
-  let links = [];
-  let strings = parser(file);
+  const links = [];
+  const strings = parser(file);
+  const rule = getRule(file);
+  strings.splice(rulePlace, 1);
   for (const string of strings) {
-    let temp = string.split(' - ');
+    let temp = string.split(rule);
     let obj = {
       from: temp[0],
       to: temp[1],
-      distance: temp[2],
+      distance: +temp[2],
     }
     links.push(obj);
   }
@@ -36,3 +43,5 @@ const getLinks = file => {
 module.exports = {
   getLinks,
 }
+
+// console.log(getLinks('cities.txt'));

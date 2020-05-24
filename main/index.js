@@ -22,17 +22,60 @@ const createGraph = file => {
   return graph;
 }
 
-// const dijkstra = (from, to, graph) => {
-//   const pointer = new GRAPH.Pointer(graph, from);
-//   const cities = graph.cities;
-//   const table = new Map();
-//   for (const city of cities) table.set(city.name, new Cell())
-// } 
+const getNextCity = (map, passed) => {
+  let arr = [];
+  for (const key of map.keys()) arr.push(key);
+  arr = arr.filter(city => {
+    for (const el of passed) {
+      if (city === el) return false;
+    }
+    return true;
+  });
+  let minWeight = Infinity;
+  let minKey;
+  for (const key of arr) {
+    if (map.get(key).weight < minWeight) {
+      minWeight = map.get(key).weight;
+      minKey = key;
+    }
+  }
+  return minKey;
+}
 
-// const getRoute = (from, to) => {
+const dijkstra = (from, graph) => {
+  const cities = graph.cities;
+  const table = new Map();
+  const passed = [];
+  for (const city of cities) table.set(city.name, new Cell('', Infinity));
+  table.get(from).weight = 0;
+  let current = from;
+  for (const qqq of table.keys()) {
+    let city = graph.getCity(current);
+    for (const key of city.links.keys()) {
+      if (table.get(key).weight > city.links.get(key) + table.get(current).weight) {
+        table.get(key).weight = city.links.get(key) + table.get(current).weight;
+        table.get(key).parent = current;
+      }
+    }
+    passed.push(current);
+    current = getNextCity(table, passed);
+  }
+  return table;
+}
 
-// }
+const getRoute = (from, to, graph) => {
+  const table = dijkstra(from, graph);
+  let route = to;
+  let current = to;
+  while(true) {
+    let parent = table.get(current).parent;
+    route = parent + ' - ' + route;
+    current = parent;
+    if (current === from) break;
+  }
+  return route;
+}
 
 const graph = createGraph('cities.txt');
 
-console.log(graph.cities.length);
+console.log(getRoute('Rivne', 'Luhans\'k', graph));

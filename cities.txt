@@ -1,3 +1,4 @@
+rule: ' - '
 Kiev - Zhytomir - 140
 Kiev - Vinnitsya - 268
 Kiev - Cherkasy - 192
