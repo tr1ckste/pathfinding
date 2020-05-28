@@ -16,37 +16,6 @@ class City {
   }
 }
 
-class Pointer {
-  constructor(graph, city) {
-    this.graph = graph;
-    this.current = city;
-    this.prev = null;
-    this.cash = [];
-  }
-
-  moveTo(city) {
-    if (this.current.links.has(city.name)) {
-      this.cash.push(this.prev);
-      this.prev = this.current;
-      this.current = city;
-    } else {
-      console.error(`aren't connected: ${city}, ${this.current}`);
-    }
-    return this;
-  }
-
-  back() {
-    if (this.cash.length > 0) {
-      this.current = this.prev;
-      this.prev = this.cash.pop();
-      return this;
-    } else {
-      console.error('reached first city');
-    }
-    return this;
-  }
-}
-
 class Graph {
   constructor() {
     this.cities = new Array();
@@ -78,6 +47,5 @@ class Graph {
 
 module.exports = {
   City,
-  Pointer,
   Graph,
 };

@@ -62,12 +62,12 @@ const createTable = cities => {
 
 const iterateTable = (current, table) => {
   for (const key of current.links.keys()) {
-    const iterableCell = getCell(current.name, table);
-    const cell = getCell(key, table);
+    const currCell = getCell(current.name, table);
+    const neighbour = getCell(key, table);
     const currLink = current.links.get(key);
-    if (cell.weight > currLink + iterableCell.weight) {
-      cell.weight = currLink + iterableCell.weight;
-      cell.parent = current.name;
+    if (neighbour.weight > currLink + currCell.weight) {
+      neighbour.weight = currLink + currCell.weight;
+      neighbour.parent = current.name;
     }
   }
 };
