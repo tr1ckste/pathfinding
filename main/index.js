@@ -21,7 +21,7 @@ const createGraph = file => {
     graph.getCity(from).link(graph.getCity(to), distance);
   }
   return graph;
-}
+};
 
 const getCell = (name, cells) => {
   for (const cell of cells) {
@@ -29,7 +29,7 @@ const getCell = (name, cells) => {
       return cell;
     }
   }
-}
+};
 
 const getNextCity = (cells, passed) => {
   let arr = [];
@@ -50,15 +50,15 @@ const getNextCity = (cells, passed) => {
     }
   }
   return minKey;
-}
+};
 
 const createTable = cities => {
-  let table = [];
+  const table = [];
   for (const city of cities) {
-    table.push(new Cell(city.name ,'', Infinity));
+    table.push(new Cell(city.name, '', Infinity));
   }
   return table;
-}
+};
 
 const iterateTable = (current, table) => {
   for (const key of current.links.keys()) {
@@ -70,7 +70,7 @@ const iterateTable = (current, table) => {
       cell.parent = current.name;
     }
   }
-}
+};
 
 const dijkstra = (from, graph) => {
   const cities = graph.cities;
@@ -79,27 +79,27 @@ const dijkstra = (from, graph) => {
   getCell(from, table).weight = 0;
   let currentName = from;
   while (true) {
-    let current = graph.getCity(currentName);
+    const current = graph.getCity(currentName);
     iterateTable(current, table);
     passed.push(currentName);
     currentName = getNextCity(table, passed);
     if (currentName === undefined) break;
   }
   return table;
-}
+};
 
 const getRoute = (from, to, file) => {
   const graph = createGraph(file);
   const table = dijkstra(from, graph);
   let route = to;
   let current = to;
-  while(true) {
-    let parent = getCell(current, table).parent;
+  while (true) {
+    const parent = getCell(current, table).parent;
     route = parent + ' - ' + route;
     current = parent;
     if (current === from) break;
   }
   return route;
-}
+};
 
 console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));

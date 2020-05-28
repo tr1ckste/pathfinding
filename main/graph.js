@@ -79,5 +79,5 @@ class Graph {
 module.exports = {
   City,
   Pointer,
-  Graph
-}
+  Graph,
+};

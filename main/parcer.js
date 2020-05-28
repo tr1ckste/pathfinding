@@ -19,9 +19,9 @@ const parser = file => {
 };
 
 const getRule = file => {
-  let rule =  parser(file)[rulePlace];
+  const rule =  parser(file)[rulePlace];
   return rule.split('rule: ').pop().replace(/\'/g, '');
-}
+};
 
 const getLinks = file => {
   const links = [];
@@ -29,19 +29,19 @@ const getLinks = file => {
   const rule = getRule(file);
   strings.splice(rulePlace, 1);
   for (const string of strings) {
-    let temp = string.split(rule);
-    let obj = {
+    const temp = string.split(rule);
+    const obj = {
       from: temp[0],
       to: temp[1],
       distance: +temp[2],
-    }
+    };
     links.push(obj);
   }
   return links;
-}
+};
 
 module.exports = {
   getLinks,
-}
+};
 
 // console.log(getLinks('cities.txt'));
