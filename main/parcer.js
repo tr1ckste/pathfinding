@@ -41,6 +41,8 @@ const getLinks = file => {
 };
 
 module.exports = {
+  parser,
+  getRule,
   getLinks,
 };
 

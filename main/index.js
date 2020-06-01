@@ -25,10 +25,12 @@ const createGraph = file => {
 
 const getCell = (name, cells) => {
   for (const cell of cells) {
+    if (typeof(name) !== 'string') throw Error ('Not a string');
     if (name === cell.name) {
       return cell;
     }
   }
+  throw Error('Not found');
 };
 
 const getNextCity = (cells, passed) => {
@@ -102,4 +104,11 @@ const getRoute = (from, to, file) => {
   return route;
 };
 
-console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
+// console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
+
+module.exports = {
+  Cell,
+  getCell,
+  createTable,
+  getNextCity,
+}
