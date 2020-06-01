@@ -3,9 +3,9 @@
 const assert = require('assert').strict;
 
 {
-  // index.js
+  //// tests for index.js
   const INDEX = require('./index.js');
-  
+
   const cells = [
     {
       name: 'York',
@@ -34,6 +34,8 @@ const assert = require('assert').strict;
     },
   ];
 
+  /// tests for getCell function
+
   const testsGetCell = [
     [
       'Riga',
@@ -41,7 +43,7 @@ const assert = require('assert').strict;
         name: 'Riga',
         parent: 'Budapest',
         weight: 98,
-      }
+      },
     ],
     [
       'York',
@@ -68,16 +70,33 @@ const assert = require('assert').strict;
   for (const test of testsGetCell) {
     const [input, expexted] = test;
     try {
-      let output  = INDEX.getCell(input, cells);
+      const output  = INDEX.getCell(input, cells);
       assert.deepStrictEqual(output, expexted, input);
     } catch (err) {
       if (err.message !== expexted) {
         console.log(`Test failed: ${input}`);
-      }  
+      }
     }
   }
 
-  // const testsGetNextCity = [
+  /// tests for getNextCity function
+  const all = ['Riga', 'York', 'Moscow', 'Athens', 'Bratislava'];
 
-  // ];
+  const testsGetNextCity = [
+    [ ['Moscow', 'Athens'], cells, 'Riga'      ],
+    [ ['Riga']            , cells, 'York'      ],
+    [ ['Riga', 'York']    , cells, 'Bratislava'],
+    [ []                  , cells, 'Riga'      ],
+    [ all                 , cells,  undefined  ],
+  ];
+
+  for (const test of testsGetNextCity) {
+    const [passed, cells, expexted] = test;
+    const result = INDEX.getNextCity(cells, passed);
+    try {
+      assert.strictEqual(result, expexted, 'Failed in test');
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }

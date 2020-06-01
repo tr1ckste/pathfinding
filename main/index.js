@@ -25,7 +25,7 @@ const createGraph = file => {
 
 const getCell = (name, cells) => {
   for (const cell of cells) {
-    if (typeof(name) !== 'string') throw Error ('Not a string');
+    if (typeof name !== 'string') throw Error ('Not a string');
     if (name === cell.name) {
       return cell;
     }
@@ -34,9 +34,9 @@ const getCell = (name, cells) => {
 };
 
 const getNextCity = (cells, passed) => {
-  let arr = [];
-  for (const cell of cells) arr.push(cell.name);
-  arr = arr.filter(city => {
+  let available = [];
+  for (const cell of cells) available.push(cell.name);
+  available = available.filter(city => {
     for (const el of passed) {
       if (city === el) return false;
     }
@@ -44,7 +44,7 @@ const getNextCity = (cells, passed) => {
   });
   let minWeight = Infinity;
   let minKey;
-  for (const name of arr) {
+  for (const name of available) {
     const cell = getCell(name, cells);
     if (cell.weight < minWeight) {
       minWeight = cell.weight;
@@ -104,11 +104,11 @@ const getRoute = (from, to, file) => {
   return route;
 };
 
-// console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
+//console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
 
 module.exports = {
   Cell,
   getCell,
   createTable,
   getNextCity,
-}
+};
