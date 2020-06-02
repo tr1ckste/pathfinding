@@ -1,6 +1,6 @@
 'use strict';
 
-const PARCER = require('./parcer');
+const PARCER = require('./parser');
 const GRAPH = require('./graph');
 
 class Cell {
