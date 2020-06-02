@@ -1,5 +1,5 @@
 # pathfinding
-Course work gets text file with cities and distances to nearest ones, makes graph out of this text file and finds the best route between two chosen cities. 
+Course work gets text file with cities and distances to the nearest ones, makes the graph out of this text file and finds the best route between two chosen cities. 
 
 ## How it works
 `graph.js` implements graph structure where `City` class creates vertexes
