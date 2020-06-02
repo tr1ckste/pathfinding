@@ -4,7 +4,7 @@ Course work gets text file with cities and distances to nearest ones, makes grap
 ## How it works
 `graph.js` implements graph structure where `City` class creates vertexes
 ##
-`parser.js`  gets file `cities.txt` from root folder, parce it in objects that contains two cities and distance between.
+`parser.js`  gets file `cities.txt` from root folder, parse it in objects that contains two cities and distance between.
 #### Details
 `getData`  
 **gets** txt file  
