@@ -3,6 +3,14 @@
 const fs = require('fs');
 const rulePlace = 0;
 
+class Link {
+  constructor(from, to, distance) {
+    this.from = from;
+    this.to = to;
+    this.distance = +distance;
+  }
+}
+
 const getData = file => {
   let data;
   try {
@@ -29,13 +37,9 @@ const getLinks = file => {
   const rule = getRule(file);
   strings.splice(rulePlace, 1);
   for (const string of strings) {
-    const temp = string.split(rule);
-    const obj = {
-      from: temp[0],
-      to: temp[1],
-      distance: +temp[2],
-    };
-    links.push(obj);
+    const [from, to, distance] = string.split(rule);
+    const link = new Link(from, to, distance);
+    links.push(link);
   }
   return links;
 };

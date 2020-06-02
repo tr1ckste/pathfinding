@@ -108,7 +108,7 @@ const getRoute = (from, to, file) => {
   return route;
 };
 
-//console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
+console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
 
 module.exports = {
   Cell,
