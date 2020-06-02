@@ -25,7 +25,7 @@ const createGraph = file => {
 
 const getCell = (name, cells) => {
   for (const cell of cells) {
-    if (typeof name !== 'string') throw Error ('Not a string');
+    if (typeof name !== 'string') throw Error('Not a string');
     if (name === cell.name) {
       return cell;
     }
@@ -33,15 +33,19 @@ const getCell = (name, cells) => {
   throw Error('Not found');
 };
 
-const getNextCity = (cells, passed) => {
-  let available = [];
-  for (const cell of cells) available.push(cell.name);
-  available = available.filter(city => {
-    for (const el of passed) {
-      if (city === el) return false;
+const substractArrs = (given, substractor) => {
+  return given.filter(el => {
+    for (const sub of substractor) {
+      if (el === sub) return false;
     }
     return true;
   });
+};
+
+const getNextCity = (cells, passed) => {
+  let available = [];
+  for (const cell of cells) available.push(cell.name);
+  available = substractArrs(available, passed);
   let minWeight = Infinity;
   let minKey;
   for (const name of available) {

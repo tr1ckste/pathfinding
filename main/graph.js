@@ -34,7 +34,7 @@ class Graph {
     for (const city of this.cities) {
       if (city.name === name) return city;
     }
-    console.error('no matches found');
+    throw Error('Not found');
   }
 
   hasCity(name) {
