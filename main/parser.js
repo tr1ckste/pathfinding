@@ -14,7 +14,7 @@ class Link {
 const getData = file => {
   let data;
   try {
-    data = fs.readFileSync(`./${file}`).toString();
+    data = fs.readFileSync(`${file}`).toString();
   } catch (err) {
     console.error(err);
   }

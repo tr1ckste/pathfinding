@@ -94,8 +94,7 @@ const dijkstra = (from, graph) => {
   return table;
 };
 
-const getRoute = (from, to, file) => {
-  const graph = createGraph(file);
+const getRoute = (from, to, graph) => {
   const table = dijkstra(from, graph);
   let route = to;
   let current = to;
@@ -108,11 +107,15 @@ const getRoute = (from, to, file) => {
   return route;
 };
 
-console.log(getRoute('Rivne', 'Luhans\'k', 'cities.txt'));
+// const graph = createGraph('cities.txt');
+// console.log(getRoute('Rivne', 'Luhans\'k', graph));
 
 module.exports = {
   Cell,
   getCell,
+  createGraph,
   createTable,
   getNextCity,
+  dijkstra,
+  getRoute,
 };
