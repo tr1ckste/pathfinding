@@ -17,7 +17,7 @@ const createGraph = file => {
   for (const link of links) {
     const { to, from, distance } = link;
     graph.add(new GRAPH.City(from, graph))
-         .add(new GRAPH.City(to, graph));
+      .add(new GRAPH.City(to, graph));
     graph.getCity(from).link(graph.getCity(to), distance);
   }
   return graph;
@@ -33,14 +33,12 @@ const getCell = (name, cells) => {
   throw Error('Not found');
 };
 
-const substractArrs = (given, substractor) => {
-  return given.filter(el => {
-    for (const sub of substractor) {
-      if (el === sub) return false;
-    }
-    return true;
-  });
-};
+const substractArrs = (given, substractor) => given.filter(el => {
+  for (const sub of substractor) {
+    if (el === sub) return false;
+  }
+  return true;
+});
 
 const getNextCity = (cells, passed) => {
   let available = [];
@@ -107,8 +105,8 @@ const getRoute = (from, to, graph) => {
   return route;
 };
 
-// const graph = createGraph('cities.txt');
-// console.log(getRoute('Rivne', 'Luhans\'k', graph));
+const graph = createGraph('cities.txt');
+console.log(getRoute('Rivne', 'Luhans\'k', graph));
 
 module.exports = {
   Cell,

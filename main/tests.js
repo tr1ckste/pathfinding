@@ -84,10 +84,10 @@ const cells = [
 
   const testsGetNextCity = [
     [ ['Moscow', 'Athens'], cells, 'Riga'      ],
-    [ ['Riga']            , cells, 'York'      ],
-    [ ['Riga', 'York']    , cells, 'Bratislava'],
-    [ []                  , cells, 'Riga'      ],
-    [ all                 , cells,  undefined  ],
+    [ ['Riga'], cells, 'York'      ],
+    [ ['Riga', 'York'], cells, 'Bratislava'],
+    [ [], cells, 'Riga'      ],
+    [ all, cells,  undefined  ],
   ];
 
   for (const test of testsGetNextCity) {

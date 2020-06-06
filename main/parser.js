@@ -28,7 +28,7 @@ const parser = file => {
 
 const getRule = file => {
   const rule =  parser(file)[rulePlace];
-  return rule.split('rule: ').pop().replace(/\'/g, '');
+  return rule.split('rule: ').pop().replace(/'/g, '');
 };
 
 const getLinks = file => {
