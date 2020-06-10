@@ -27,7 +27,10 @@ const cases = [
   },
   {
     city: 'to',
-    getCondition: input => graph.hasCity(input) && input !== cities.from,
+    getCondition: input => {
+      const extraCond = input !== cities.from;
+      return graph.hasCity(input) && extraCond;
+    },
     thenCase: () => {
       const { from, to } = cities;
       console.clear();
