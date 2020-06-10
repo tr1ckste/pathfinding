@@ -41,8 +41,7 @@ const substractArrs = (given, substractor) => given.filter(el => {
 });
 
 const getNextCity = (cells, passed) => {
-  let available = [];
-  for (const cell of cells) available.push(cell.name);
+  let available = cells.map(cell => cell.name);
   available = substractArrs(available, passed);
   let minWeight = Infinity;
   let minKey;
