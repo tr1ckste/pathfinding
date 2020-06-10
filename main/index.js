@@ -105,9 +105,6 @@ const getRoute = (from, to, graph) => {
   return route;
 };
 
-const graph = createGraph('cities.txt');
-console.log(getRoute('Rivne', 'Luhans\'k', graph));
-
 module.exports = {
   Cell,
   getCell,
